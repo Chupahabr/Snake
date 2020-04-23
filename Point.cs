@@ -26,7 +26,7 @@ namespace Snake
         public Point(Point p)
         {
             x = p.x;
-            y = p.x;
+            y = p.y;
             sym = p.sym;
         }
 
@@ -34,26 +34,37 @@ namespace Snake
         {
             if (direction == Direction.RIGHT)
             {
-                x = x - offset;
+                x += offset;
             }
             else if(direction == Direction.LEFT)
             {
-                x = x - offset;
+                x -= offset;
             }
             else if(direction == Direction.UP)
             {
-                y = y + offset;
+                y += offset;
             }
             else if (direction == Direction.DOWN)
             {
-                y = y - offset;
+                y -= offset;
             }
+        }
+
+        internal void Clear()
+        {
+            this.sym = ' ';
+            Draw();
         }
 
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
+        }
+
+        public override string ToString()
+        {
+            return x + ", " + y + ", " + sym;
         }
     }
 }
